@@ -4,8 +4,7 @@ import mongoose from 'mongoose';
 import User from './model/userModel.js';
 import UserLogin from './model/userLoginModel.js';
 import userLogindata from './userLogindata.js';
-
-const PORT = process.env.PORT || 4000;
+const path = require('path');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -20,6 +19,15 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
   });
+
+///serve static file assets if in production
+if (process.env.NODE_ENV === 'production'){
+  //set static folder
+  app.use(express.static('client/build'));
+  app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+  });
+}
 
 app.get('/',(req, res)=>{
     res.send('server is ready');
@@ -124,6 +132,6 @@ app.post(
 );
   
 
-app.listen(PORT, () =>{
-    console.log(`server at ${PORT}`);
+app.listen(process.env.PORT || 4000, () =>{
+    console.log('server is running');
 });
