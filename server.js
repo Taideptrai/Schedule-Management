@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-mongoose.connect('mongodb://localhost/CrudApp',{
+mongoose.connect('mongodb+srv://TaiNguyen:tailacuachi123@cluster0.vnlzl.mongodb.net/test',{
     useNewUrlParser:true,
     useUnifiedTopology: true,
     useCreateIndex: true,
