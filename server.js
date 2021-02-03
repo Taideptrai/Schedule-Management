@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-mongoose.connect('mongodb+srv://TaiNguyen:tailacuachi123@cluster0.vnlzl.mongodb.net/test',{
+mongoose.connect( process.env.MONGODB_URI ||'mongodb+srv://TaiNguyen:tailacuachi123@cluster0.vnlzl.mongodb.net/test',{
     useNewUrlParser:true,
     useUnifiedTopology: true,
     useCreateIndex: true,
