@@ -5,6 +5,7 @@ import User from './model/userModel.js';
 import UserLogin from './model/userLoginModel.js';
 import userLogindata from './userLogindata.js';
 import dotenv from 'dotenv';
+import path from 'path';
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -30,9 +31,9 @@ if (process.env.NODE_ENV === 'production'){
   });
 }
 
-app.get("/", (req, res) => {
-  res.send("<h1>Hello World!</h1>")
-})
+app.get('/',(req, res)=>{
+    res.send('server is ready');
+});
 app.get('/abc',(req, res)=>{
     res.send("abc test");
 });
