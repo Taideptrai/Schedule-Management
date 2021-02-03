@@ -4,10 +4,21 @@ import mongoose from 'mongoose';
 import User from './model/userModel.js';
 import UserLogin from './model/userLoginModel.js';
 import userLogindata from './userLogindata.js';
-import dotenv from 'dotenv';
-import path from 'path';
-dotenv.config();
-const port = process.env.PORT || 4000;
+const path = require('path')
+
+// Serve static files from the React frontend app
+
+
+if (process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.join(__dirname, '../frontend/build')))
+
+  // AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
+  })
+}
+
+const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -22,9 +33,6 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
   });
-
-
-
 
 app.get('/',(req, res)=>{
     res.send('server is ready');
@@ -128,13 +136,7 @@ app.post(
   }
 );
   
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-  app.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  })
-}
 
-app.listen(port, () =>{
-    console.log('server is running');
+app.listen(PORT, () =>{
+    console.log(`server at ${PORT}`);
 });
