@@ -23,13 +23,13 @@ app.use(function (req, res, next) {
   });
 
 ///serve static file assets if in production
-if (process.env.NODE_ENV === 'production'){
-  //set static folder
-  app.use(express.static('client/build'));
-  app.get('*',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'client','build','index.html'));
-  });
-}
+
+app.use(express.static(path.join(__dirname, '../client/build')))
+
+// AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../client/build/index.html'))
+})
 
 app.get('/',(req, res)=>{
     res.send('server is ready');
