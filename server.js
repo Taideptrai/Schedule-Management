@@ -1,6 +1,6 @@
 import express from 'express';
 import data from './data.js';
-const cors = require("cors");
+import cors from "cors";
 import mongoose from 'mongoose';
 import User from './model/userModel.js';
 import UserLogin from './model/userLoginModel.js';
