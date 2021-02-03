@@ -30,9 +30,9 @@ if (process.env.NODE_ENV === 'production'){
   });
 }
 
-app.get('/',(req, res)=>{
-    res.send('server is ready');
-});
+app.get("/", (req, res) => {
+  res.send("<h1>Hello World!</h1>")
+})
 app.get('/abc',(req, res)=>{
     res.send("abc test");
 });
