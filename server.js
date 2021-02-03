@@ -6,7 +6,6 @@ import UserLogin from './model/userLoginModel.js';
 import userLogindata from './userLogindata.js';
 import dotenv from 'dotenv';
 dotenv.config();
-import path from 'path';
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
