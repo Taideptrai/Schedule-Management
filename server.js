@@ -6,6 +6,7 @@ import UserLogin from './model/userLoginModel.js';
 import userLogindata from './userLogindata.js';
 import dotenv from 'dotenv';
 import path from 'path';
+
 dotenv.config();
 const port = process.env.PORT || 4000;
 const app = express();
@@ -124,12 +125,11 @@ app.post(
     });
   }
 );
-  
+const __dirname = path.resolve();
 if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-  app.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  })
+  app.use(express.static(path.join(__dirname, '/frontend/build')));
+  app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
 }
 
 app.listen(port, () =>{
