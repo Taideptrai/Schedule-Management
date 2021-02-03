@@ -24,9 +24,6 @@ app.use(function (req, res, next) {
     next();
   });
 
-app.get('/',(req, res)=>{
-    res.send('server is ready');
-});
 app.get('/abc',(req, res)=>{
     res.send("abc test");
 });
