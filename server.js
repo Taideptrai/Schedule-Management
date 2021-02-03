@@ -1,5 +1,6 @@
 import express from 'express';
 import data from './data.js';
+const cors = require("cors");
 import mongoose from 'mongoose';
 import User from './model/userModel.js';
 import UserLogin from './model/userLoginModel.js';
@@ -9,6 +10,8 @@ import path from 'path';
 dotenv.config();
 const port = process.env.PORT || 4000;
 const app = express();
+app.use(bodyParser.json());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 mongoose.connect('mongodb+srv://TaiNguyen:tailacuachi123@cluster0.vnlzl.mongodb.net/test',{
@@ -22,9 +25,6 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
   });
-
-
-
 
 app.get('/',(req, res)=>{
     res.send('server is ready');
