@@ -1,6 +1,6 @@
 {
   "name": "crudmernstack",
-  "proxy": "https://mernapp2022.herokuapp.com",
+  "proxy": "https://mernapp20.herokuapp.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
