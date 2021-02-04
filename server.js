@@ -30,9 +30,9 @@ app.get('/abc',(req, res)=>{
 
 app.get('/hellotest', async(req, res) =>{   
     const userCreated = await User.insertMany(data); 
-    res.send(userCreated); 
+    res.send(userCreated);
 })
-app.get('/adduserlogin', async(req, res) =>{   
+app.get("/adduserlogin", async(req, res) =>{   
     const userLoginCreated = await UserLogin.insertMany(userLogindata); 
     res.send(userLoginCreated); 
 })
